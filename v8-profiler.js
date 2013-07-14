@@ -171,6 +171,30 @@ CpuProfile.prototype.getBottomUpRoot = function() {
   return inspectorObjectFor(this.bottomRoot);
 };
 
+//  saves the CpuProfile tree from the top down to JSON formatted file
+//  best to save as {name}.cpuprofile then open in chrome
+//  note: couldn't populate the head idleTime or samples[] 
+//        like the /Source/core/inspector/ScriptProfile.cpp as no ref 
+//        for getNodeID or GetSample existed in .node-gyp 0.10.12
+CpuProfile.prototype.save = function(filePath) {
+    
+    if (this.topRoot) {
+        topRootData = {
+            head: inspectorObjectFor(this.topRoot),
+            idleTime: 0,
+            samples: []
+        }
+    }
+    else
+        topRootData = {}
+    
+    topRootJSON = JSON.stringify(topRootData);
+    
+    var fs = require("fs");
+    fs.writeFileSync(filePath, topRootJSON);
+    
+}
+
 var heapCache = [];
 
 exports.takeSnapshot = function(name, control) {
