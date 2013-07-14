@@ -11,15 +11,25 @@ profiler and integration with [node-inspector](http://github.com/dannycoates/nod
 
 ## API
 
-        var snapshot = profiler.takeSnapshot([name])      //takes a heap snapshot
-        
-        profiler.startProfiling([name])                   //begin cpu profiling
-        var cpuProfile = profiler.stopProfiling([name])   //finish cpu profiling
-        
-        You can save CpuProfile and load in to chrome for viewing.
-        *Save as {name}.cpuprofile then open in chrome via inspector->profile panel->Load*
-        cpuProfile.save(*filePath*)
-         
+#####Profiling
+	
+		profiler.startProfiling([name])                   //begin cpu profiling
+		var cpuProfile = profiler.stopProfiling([name])   //finish cpu profiling
+	
+You can also save CpuProfile and then load it in to chrome for viewing. (tested on chrome >=v28)
+>Save as {name}.cpuprofile then open in chrome via inspector->profile panel
+
+		var cpuProfile = profiler.stopProfiling([name])   //finish cpu profiling
+		cpuProfile.save(*filePath*)
+	
+#####Snapshots
+
+Heap
+
+		var snapshot = profiler.takeSnapshot([name])      //takes a heap snapshot
+
+
+
 ## node-inspector
 
 Cpu profiles can be viewed and heap snapshots may be taken and viewed from the
