@@ -3,19 +3,23 @@ profiler and integration with [node-inspector](http://github.com/dannycoates/nod
 
 ## Installation
 
-    npm install v8-profiler
+		npm install v8-profiler
 
 ## Usage
 
-    var profiler = require('v8-profiler');
+		var profiler = require('v8-profiler');
 
 ## API
 
-    var snapshot = profiler.takeSnapshot([name])      //takes a heap snapshot
-
-    profiler.startProfiling([name])                   //begin cpu profiling
-    var cpuProfile = profiler.stopProfiling([name])   //finish cpu profiling
-
+        var snapshot = profiler.takeSnapshot([name])      //takes a heap snapshot
+        
+        profiler.startProfiling([name])                   //begin cpu profiling
+        var cpuProfile = profiler.stopProfiling([name])   //finish cpu profiling
+        
+        You can save CpuProfile and load in to chrome for viewing.
+        *Save as {name}.cpuprofile then open in chrome via inspector->profile panel->Load*
+        cpuProfile.save(*filePath*)
+         
 ## node-inspector
 
 Cpu profiles can be viewed and heap snapshots may be taken and viewed from the
